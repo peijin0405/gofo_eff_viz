@@ -55,7 +55,7 @@ if 'language' not in st.session_state:
 df = pd.read_csv("data.csv", encoding="utf-8")
 
 # 计算错分率、人效、人工分拣量
-df['错分率(%)'] = df['错分票数'] / df['总集包票数'] * 100
+df['错分率'] = df['错分票数'] / df['总集包票数']
 df['总工时'] = df['JOY工时'] + df['DELIN工时'] + df['RAPID工时'] + df['MB工时']
 df['人效(票/小时)'] = df['总集包票数'] / df['总工时']
 df['人工分拣量'] = df['总集包票数'] - df['分拣机分拣量']
