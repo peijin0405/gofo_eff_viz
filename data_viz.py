@@ -12,7 +12,7 @@ def get_text(language):
             "title": "📊 分拣业务运营可视化面板",
             "date_note": "以下数据为{}的数据",
             "kpi1": "总集包票数",
-            "kpi2": "错分率(%)",
+            "kpi2": "错分率",
             "kpi3": "总工时",
             "kpi4": "人效(票/小时)",
             "kpi5": "机器分拣量",
@@ -100,7 +100,7 @@ st.markdown(f"**{text['date_note'].format(latest_date.strftime('%Y-%m-%d'))}**")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 col1.metric(text["kpi1"], f"{latest_row['总集包票数']:,}")
-col2.metric(text["kpi2"], f"{latest_row['错分率(%)']:.3f}")
+col2.metric(text["kpi2"], f"{latest_row['错分率']:.3f}")
 col3.metric(text["kpi3"], f"{latest_row['总工时']:.2f}")
 col4.metric(text["kpi4"], f"{latest_row['人效(票/小时)']:.2f}")
 col5.metric(text["kpi5"], f"{latest_row['分拣机分拣量']:,}")
@@ -125,7 +125,7 @@ fig.add_trace(
     row=1, col=1, secondary_y=False
 )
 fig.add_trace(
-    go.Scatter(x=df['日期'], y=df['错分率(%)'], name='错分率(%)', mode='lines+markers', line=dict(color='red')),
+    go.Scatter(x=df['日期'], y=df['错分率'], name='错分率', mode='lines+markers', line=dict(color='red')),
     row=1, col=1, secondary_y=True
 )
 
@@ -170,7 +170,7 @@ fig.update_layout(
     legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
 )
 fig.update_yaxes(title_text="票数", row=1, col=1, secondary_y=False)
-fig.update_yaxes(title_text="错分率(%)", row=1, col=1, secondary_y=True)
+fig.update_yaxes(title_text="错分率", row=1, col=1, secondary_y=True)
 fig.update_yaxes(title_text="工时", row=2, col=1, secondary_y=False)
 fig.update_yaxes(title_text="人效(票/小时)", row=2, col=1, secondary_y=True)
 fig.update_yaxes(title_text="票数", row=3, col=1)
