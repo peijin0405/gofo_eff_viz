@@ -100,7 +100,7 @@ st.markdown(f"**{text['date_note'].format(latest_date.strftime('%Y-%m-%d'))}**")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 col1.metric(text["kpi1"], f"{latest_row['总集包票数']:,}")
-col2.metric(text["kpi2"], f"{latest_row['错分率']:.3f}")
+col2.metric(text["kpi2"], f"{latest_row['错分率']:.4f}")
 col3.metric(text["kpi3"], f"{latest_row['总工时']:.2f}")
 col4.metric(text["kpi4"], f"{latest_row['人效(票/小时)']:.2f}")
 col5.metric(text["kpi5"], f"{latest_row['分拣机分拣量']:,}")
