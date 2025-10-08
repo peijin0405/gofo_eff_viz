@@ -16,6 +16,9 @@ def get_text(language):
             "kpi3": "总工时",
             "kpi4": "人效(票/小时)",
             "kpi5": "机器分拣量",
+            "kpi6": "新仓总集包票数",
+            "kpi7": "新仓总工时",
+            "kpi8": "新仓人效(票/小时)",
             "note": "💡 说明：人效(票/小时) = 总集包票数 ÷ 总工时；总工时包含 JOY、DELIN、RAPID、MB 的早、中、晚班工时（不含 PR 工时）。",
             "chart_title": "分拣业务可视化面板",
             "chart1": "每日分拣总量 & 错分率(%)",
@@ -33,6 +36,9 @@ def get_text(language):
             "kpi3": "Total Hours",
             "kpi4": "Efficiency(pcs/hour)",
             "kpi5": "Machine Sorting Volume",
+            "kpi6": "New Warehouse Total Packages",
+            "kpi7": "New Warehouse Total Hours",
+            "kpi8": "New Warehouse Efficiency(pcs/hour)",
             "note": "💡 Note: Efficiency = Total Packages ÷ Total Hours; Total hours include JOY, DELIN, RAPID, MB shifts (excluding PR hours).",
             "chart_title": "Sorting Operation Dashboard",
             "chart1": "Daily Sorting Volume & Error Rate",
@@ -59,6 +65,8 @@ df['错分率(%)'] = df['错分票数'] / df['总集包票数']*100
 df['总工时'] = df['JOY工时'] + df['DELIN工时'] + df['RAPID工时'] + df['MB工时']
 df['人效(票/小时)'] = df['总集包票数'] / df['总工时']
 df['人工分拣量'] = df['总集包票数'] - df['分拣机分拣量']
+
+df['新仓人效(票/小时)'] = df['新仓总集包数'] / df['新仓总工时']
 
 df['日期'] = pd.to_datetime(df['日期'], format="%m月%d日")
 df['日期'] = df['日期'].apply(lambda d: d.replace(year=2025))
@@ -104,6 +112,13 @@ col2.metric(text["kpi2"], f"{latest_row['错分率(%)']:.3f}")
 col3.metric(text["kpi3"], f"{latest_row['总工时']:.2f}")
 col4.metric(text["kpi4"], f"{latest_row['人效(票/小时)']:.2f}")
 col5.metric(text["kpi5"], f"{latest_row['分拣机分拣量']:,}")
+
+
+col6, col7, col8 = st.columns(3)
+col6.metric(text["kpi6"], f"{latest_row['新仓总集包数']:,}")
+col7.metric(text["kpi7"], f"{latest_row['新仓总工时']:.2f}")
+col8.metric(text["kpi8"], f"{latest_row['新仓人效(票/小时)']:.2f}")
+
 
 # 备注说明
 st.caption(text["note"])
