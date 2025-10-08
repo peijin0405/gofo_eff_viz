@@ -114,7 +114,7 @@ col4.metric(text["kpi4"], f"{latest_row['人效(票/小时)']:.2f}")
 col5.metric(text["kpi5"], f"{latest_row['分拣机分拣量']:,}")
 
 
-col6, col7, col8 = st.columns(3)
+col6, col7, col8, empty1, empty2 = st.columns(5)
 col6.metric(text["kpi6"], f"{latest_row['新仓总集包数']:,}")
 col7.metric(text["kpi7"], f"{latest_row['新仓总工时']:.2f}")
 col8.metric(text["kpi8"], f"{latest_row['新仓人效(票/小时)']:.2f}")
